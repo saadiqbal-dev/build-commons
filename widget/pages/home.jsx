@@ -1,53 +1,43 @@
-const { Hero } = VM.require("new/widget/home.Hero") || {
+const { Hero } = VM.require("${config_account}/widget/home.Hero") || {
   Hero: () => <></>,
 };
-const { Exosystem } = VM.require("new/widget/home.Exosystem") || {
+const { Exosystem } = VM.require("${config_account}/widget/home.Exosystem") || {
   Exosystem: () => <></>,
 };
-const { Build } = VM.require("new/widget/home.Build") || {
+const { Build } = VM.require("${config_account}/widget/home.Build") || {
   Build: () => <></>,
 };
-const { Cards } = VM.require("new/widget/home.Cards") || {
+const { Cards } = VM.require("${config_account}/widget/home.Cards") || {
   Cards: () => <></>,
 };
-const { CTA } = VM.require("new/widget/home.CTA") || {
-  CTA: () => <></>,
-};
-const { Footer } = VM.require("new/widget/home.Footer") || {
+const { Footer } = VM.require("${config_account}/widget/home.Footer") || {
   Footer: () => <></>,
 };
+
 const poppinsCss = fetch(
-  "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap",
+  "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 ).body;
 
 const TopArch =
   "https://ipfs.near.social/ipfs/bafkreiftibkjr3teps4va7wd7chhlohhxa7fp3n35l5twu3o3olizvvelu";
-
 const ScrollMask =
   "https://ipfs.near.social/ipfs/bafkreidi2yppuhqqv6b3acddqrddvldadibclg3cvcgbsqroj5lwmtgpvi";
-
 const MiddleArc =
   "https://ipfs.near.social/ipfs/bafkreifs53iepsuuglzcffvzhgvcrcp2hlq4ustyhowlw55sssdp754hte";
-
 const BuilderCircle =
   "https://ipfs.near.social/ipfs/bafybeif433aznu7345ynen2ixcyg7ygewbwkuc6y3bxstxbybpcw6hopla";
-
 const Glow =
   "https://ipfs.near.social/ipfs/bafkreiez5qynxwerwizviolzcaxuq7qz7fgj4jt5x4onc2fyr5zb5tg6m4";
 const GlowCenter =
   "https://ipfs.near.social/ipfs/bafybeid732rhjdehigkonncc5ojayufvfca4rrsyuwv6t3embwdsqmyrqy";
 const Blocks =
   "https://ipfs.near.social/ipfs/bafkreidojwecmxrsaknl5n5qydr3y4hqckpgvhtr3wszuopeiqy45ccs5e";
-
 const BigCircle =
   "https://ipfs.near.social/ipfs/bafkreiarw4c44ujtvvjq3rfw5oi5fdtq2vdvnctss7pzpti5riybun4ecu";
-
 const SmallCircle =
   "https://ipfs.near.social/ipfs/bafkreigjute34d7gk366enhqubqkafy5e7dn6giqhpr5ibisvzjfk2ilrm";
-
 const Eclipse =
   "https://ipfs.near.social/ipfs/bafkreihhrxl4haseaevansbeg3wcxn7jr2f2rfd3jzzdyqqlq3vinuy6wa";
-
 const EclipseCenter =
   "https://ipfs.near.social/ipfs/bafkreifddwbqkpvocgkatructumeng3irjefne6fxvk3wuc5gbrg7zh34i";
 
@@ -58,7 +48,7 @@ const HomeContainer = styled.div`
   background-color: black;
   color: white;
   min-height: 100vh;
-  overflow-x: clip;
+  overflow: clip;
 
   button {
     z-index: 5;
@@ -166,7 +156,7 @@ return (
     </div>
     <MiddleArcImg src={MiddleArc} />
 
-    <div className="position-relative">
+    {/* <div className="position-relative">
       <Exosystem />
       <BuilderCircleImg src={BuilderCircle} />
     </div>
@@ -181,9 +171,8 @@ return (
       <Cards />
       <EclipseTop src={Eclipse} />
       <EclipseTopCenter src={EclipseCenter} />
-    </div>
-
-    <CTA />
+    </div> */}
+    <Widget src="${config_account}/widget/home.CTA" loading={<></>} />
     <Footer />
   </HomeContainer>
 );

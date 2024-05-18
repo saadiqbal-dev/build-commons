@@ -1,1 +1,1 @@
-return <p>hello builder</p>;
+return <Widget src="${config_account}/widget/pages.home" loading="" />;
