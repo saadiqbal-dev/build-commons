@@ -47,7 +47,7 @@ const HeroContainer = styled.div`
 `;
 
 const HeadingSection = styled.div`
-  padding: 80px 120px;
+  padding: 80px 120px 0px 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,6 +86,8 @@ const HeadingSection = styled.div`
 `;
 
 const Heading = styled.h1`
+  display: flex;
+  /* flex-direction: column; */
   color: white;
   font-family: Poppins, sans-serif;
   text-align: right;
@@ -123,40 +125,47 @@ const Heading = styled.h1`
 `;
 
 const Subheading = styled.h2`
-  color: #a0a0a0;
-  font-family: Poppins, sans-serif;
-  font-size: 20px;
-  line-height: 28px;
+  z-index: 2;
+  color: var(--A0A0A0, #a0a0a0);
+  font-family: Poppins;
+  font-size: 33px;
+  font-style: normal;
   font-weight: 400;
+  line-height: 140%; /* 46.2px */
   margin: 0;
-  max-width: 622px;
 
   @media screen and (max-width: 500px) {
     font-size: 14px;
   }
 `;
 
-
 const Hero = () => {
   return (
     <HeroContainer>
       <HeadingSection>
         <div className="row gap-3 flex-wrap">
-          <Heading className="col-6">Let's Build <span>Commons</span></Heading>
+          <Heading className="col-6">
+            Let's Build <span>Commons</span>
+          </Heading>
           {/* <Widget src="${config_account}/widget/home.hero.vertical" /> */}
         </div>
         <div className="d-flex align-items-center gap-4 hero-btns">
-          <Button className="hero-button" style={{
-            opacity: "0.7"
-          }}>Join Project</Button>
+          <Button
+            className="hero-button"
+            style={{
+              opacity: "0.7",
+            }}
+          >
+            Join Project
+          </Button>
           <Button>Explore Contracts</Button>
         </div>
         <Subheading>
-        Designed to support spaces between with value and meaning Access points to shared missions, and how to help craft them.
-Executive Grounding Systems. Traditional Resource Contracts. 
-Dynamic Resource Foundations. Cooperative Goals Funding.
+          Designed to support spaces between with value and meaning Access
+          points to shared missions, and how to help craft them. Executive
+          Grounding Systems. Traditional Resource Contracts. Dynamic Resource
+          Foundations. Cooperative Goals Funding.
         </Subheading>
-
       </HeadingSection>
     </HeroContainer>
   );

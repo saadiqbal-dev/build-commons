@@ -14,9 +14,29 @@ const { Footer } = VM.require("${config_account}/widget/home.Footer") || {
   Footer: () => <></>,
 };
 
+const { Impact } = VM.require("${config_account}/widget/home.Impact") || {
+  Impact: () => <></>,
+};
+
+const { Modal, Button } = VM.require("buildhub.near/widget/components") || {
+  Modal: () => <></>,
+  Button: () => <></>,
+};
+
 const poppinsCss = fetch(
   "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
 ).body;
+
+const rokkittCss = fetch(
+  "https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rokkitt:ital,wght@0,100..900;1,100..900&display=swap"
+);
+
+const LeftColumnDripi =
+  "https://ipfs.near.social/ipfs/bafkreicgueg4wurjzzdrcxoyi25uvwenbzarc6qahesvvvsfl25qpri2g4";
+const ColumnModelR =
+  "https://ipfs.near.social/ipfs/bafkreigxmtnllskqbzgm4ghcutgk55dfeu4dqu5es52nyv72tkff2gwsxy";
+const ColumnModelL =
+  "https://ipfs.near.social/ipfs/bafkreihu25a4aj3mi3kfvqwvn3q5wjrubq3nxbmpunnbiftltvlnt2u4yq";
 
 const TopArch =
   "https://ipfs.near.social/ipfs/bafkreiftibkjr3teps4va7wd7chhlohhxa7fp3n35l5twu3o3olizvvelu";
@@ -41,6 +61,31 @@ const Eclipse =
 const EclipseCenter =
   "https://ipfs.near.social/ipfs/bafkreifddwbqkpvocgkatructumeng3irjefne6fxvk3wuc5gbrg7zh34i";
 
+const fetchedWords = fetch(
+  "https://raw.githubusercontent.com/saadiqbal-dev/words/main/words.json"
+).body;
+
+if (!fetchedWords) {
+  return "";
+}
+
+const words = JSON.parse(fetchedWords);
+function divideArrayIntoThreeParts(arr) {
+  const length = arr.length;
+  const partSize = Math.floor(length / 3);
+  const remainder = length % 3;
+
+  const part1End = partSize + (remainder > 0 ? 1 : 0);
+  const part2End = part1End + partSize + (remainder > 1 ? 1 : 0);
+
+  const part1 = arr.slice(0, part1End);
+  const part2 = arr.slice(part1End, part2End);
+  const part3 = arr.slice(part2End);
+
+  return [part1, part2, part3];
+}
+const [words1, words2, words3] = divideArrayIntoThreeParts(words);
+
 const HomeContainer = styled.div`
   position: relative;
   display: flex;
@@ -53,7 +98,7 @@ const HomeContainer = styled.div`
   button {
     z-index: 5;
   }
-
+  ${rokkittCss}
   ${poppinsCss}
 `;
 
@@ -84,8 +129,8 @@ const MiddleArcImg = styled.img`
 const BuilderCircleImg = styled.img`
   pointer-events: none;
   position: absolute;
-  width: 35%;
-  bottom: 50px;
+  width: 45%;
+  top: -400px;
   right: 0;
   transform: translateY(50%);
 `;
@@ -93,6 +138,7 @@ const BuilderCircleImg = styled.img`
 const GlowImg = styled.img`
   pointer-events: none;
   position: absolute;
+  z-index: 0;
   top: 0;
   left: 0;
 `;
@@ -146,6 +192,97 @@ const EclipseTopCenter = styled.img`
   width: 8%;
 `;
 
+const LeftColumnDripi_Img = styled.img`
+  position: absolute;
+  width: 20%;
+`;
+const ColumnModelR_Img = styled.img`
+  position: absolute;
+  top: 800px;
+  z-index: 0;
+  width: 40%;
+  opacity: 0.4;
+  left: -100px;
+`;
+const ColumnModelL_Img = styled.img`
+  position: absolute;
+  z-index: 1;
+  top: 800px;
+  width: 20%;
+  opacity: 0.4;
+`;
+
+const ComingSoonBanner = styled.div`
+  z-index: 3;
+  position: absolute;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding: 48px;
+  width: 95%;
+  height: 250px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  border: 5px solid #000;
+  background: linear-gradient(
+      178deg,
+      rgba(0, 0, 0, 0) 25.86%,
+      rgba(0, 0, 0, 0.52) 101.16%
+    ),
+    rgba(124, 104, 134, 0.74);
+  top: 30px;
+  left: 32px;
+  h3 {
+    color: rgba(62, 46, 46, 0.79) !important;
+    font-family: "Rokkitt", serif;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 156%; /* 93.6px */
+    margin-top: -50px;
+  }
+`;
+
+const Scroll = styled.div`
+  position: relative;
+  z-index: 2;
+  padding: 48px;
+  border: none;
+  border-radius: 50px !important;
+  overflow: clip;
+
+  h2 {
+    font-size: 44px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: -1.76px;
+    span {
+      background: linear-gradient(87deg, #eca227 39.02%, #fc8119 108.97%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 44px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 120%;
+      letter-spacing: -1.76px;
+    }
+  }
+`;
+
+const emailSubmitted = Storage.get("emailSubmitted");
+
+const [showModal, setShowModal] = useState(false);
+const [word, setWord] = useState(false);
+const handleWordClick = (selectedWord) => {
+  setShowModal((prev) => {
+    return !prev;
+  });
+  // const filteredWord = words.filter((word) => word.Term === selectedWord);
+  setWord(selectedWord);
+};
+
 return (
   <HomeContainer>
     <TopArcImg src={TopArch} />
@@ -153,26 +290,119 @@ return (
       <ScrollMaskImg src={ScrollMask} />
       <Hero />
       <GlowImg src={Glow} />
+      <ColumnModelL_Img src={ColumnModelL} />
+      <ColumnModelR_Img src={ColumnModelR} />
     </div>
     <MiddleArcImg src={MiddleArc} />
+    <Scroll>
+      <ComingSoonBanner>
+        <h3>Coming Soon!</h3>
+      </ComingSoonBanner>
+      <h2>
+        helpful <span>terms</span>
+      </h2>
+      <Widget
+        src="${config_account}/widget/home.hero.ScrollingText"
+        props={{
+          direction: "normal",
+          words: words1,
+          handleWordClick,
+        }}
+      />
+      <Widget
+        src="${config_account}/widget/home.hero.ScrollingText"
+        props={{
+          direction: "reverse",
+          words: words2,
+          handleWordClick,
+        }}
+      />
+      <Widget
+        src="${config_account}/widget/home.hero.ScrollingText"
+        props={{
+          direction: "normal",
+          words: words3,
+          handleWordClick,
+        }}
+      />
+    </Scroll>
+    <div>
+      <ColumnModelL_Img src={ColumnModelL} />
+      <ColumnModelR_Img src={ColumnModelR} />
+      {/* <LeftColumnDripi_Img src={LeftColumnDripi} /> */}
+    </div>
+    <Widget src="${config_account}/widget/home.CTA" loading={""} />
+    {emailSubmitted !== "" ? (
+      <>
+        <div className="position-relative z-3 ">
+          <Exosystem />
+          <BuilderCircleImg src={BuilderCircle} />
+        </div>
+        <div className="z-1 position-relative ">
+          <BigCircleImg src={BigCircle} />
+          <SmallCircleImg src={SmallCircle} />
+          <Build />
+          <BlockImg src={Blocks} />
+        </div>
+        <div className="position-relative">
+          <GlowCircle src={GlowCenter} />
+          <Cards />
+          <EclipseTop src={Eclipse} />
+          <EclipseTopCenter src={EclipseCenter} />
+        </div>
+        <Impact />
+      </>
+    ) : (
+      <div
+        style={{
+          zIndex: "1",
+          padding: "48px",
+          display: "flex",
+          alignItems: "center",
+          justifyItems: "center",
+        }}
+      >
+        <h1>
+          Only those who can enter a valid email get to see the magic below.
+          Think you have what it takes?
+        </h1>
+      </div>
+    )}
 
-    {/* <div className="position-relative">
-      <Exosystem />
-      <BuilderCircleImg src={BuilderCircle} />
-    </div>
-    <div className="z-1 position-relative ">
-      <BigCircleImg src={BigCircle} />
-      <SmallCircleImg src={SmallCircle} />
-      <Build />
-      <BlockImg src={Blocks} />
-    </div>
-    <div className="position-relative">
-      <GlowCircle src={GlowCenter} />
-      <Cards />
-      <EclipseTop src={Eclipse} />
-      <EclipseTopCenter src={EclipseCenter} />
-    </div> */}
-    <Widget src="${config_account}/widget/home.CTA" loading={<></>} />
     <Footer />
+
+    <Modal
+      open={showModal}
+      // title={"Add or Challenge Definition"}
+      onOpenChange={() => {
+        setShowModal((prev) => {
+          return !prev;
+        });
+      }}
+    >
+      <Button
+        variant="primary"
+        style={{
+          pointerEvents: "none",
+          borderRadius: "25px",
+        }}
+      >
+        {word.Term}
+      </Button>
+      <div>{word.Definition}</div>
+      <br />
+      <div
+        style={{
+          display: "flex",
+          gap: "16px",
+        }}
+      >
+        {" "}
+        <Button type="icon">
+          <i className="bi bi-plus"></i>
+        </Button>
+        <Button variant="primary">Challenge</Button>
+      </div>
+    </Modal>
   </HomeContainer>
 );

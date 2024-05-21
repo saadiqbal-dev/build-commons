@@ -11,7 +11,10 @@ const {
   BuildDAOSVGBottom: () => <></>,
   HammerSVG: () => <></>,
 };
-
+const Scroll =
+  "https://ipfs.near.social/ipfs/bafybeifligbo4ocbjld747tqyssohwe5vhihmdolmct33ddqayod5yywr4";
+const CommonFacade =
+  "https://ipfs.near.social/ipfs/bafkreigrelt2ifuizaxozelrxlhd7hpq4qn6prwk5qn22bicdy6vp2k7da";
 const CTABG =
   "https://ipfs.near.social/ipfs/bafkreigoa47u7cn7mibiq2vfb7jrrjkvl3ho736x6r4rpo6ajcqmnsc64q";
 
@@ -22,8 +25,11 @@ const YellowGlow =
   "https://ipfs.near.social/ipfs/bafkreiblid6kdrasnlatfldvzooa67vvgfhx6h6tebs4zstyjgvwwe3d6y";
 
 const MainContainer = styled.div`
+  z-index: 1;
   position: relative;
   border-radius: 24px;
+  border: 4px solid rgba(250, 193, 52, 0.4);
+  background: #9a5c22;
   margin: 72px 48px;
   z-index: 2;
   overflow: clip;
@@ -33,6 +39,7 @@ const MainContainer = styled.div`
 `;
 
 const Container = styled.div`
+  z-index: 1;
   position: relative;
   border-radius: 24px;
   background: #9a5c22;
@@ -42,7 +49,11 @@ const Content = styled.div`
   position: relative;
   z-index: 1;
   overflow: clip;
-  padding: 72px 48px;
+  padding: 24px 48px;
+
+  p {
+    opacity: 0.4;
+  }
   @media screen and (max-width: 500px) {
     display: flex;
     flex-direction: column;
@@ -54,25 +65,40 @@ const Content = styled.div`
 
 const Ellipse_1 = styled.div`
   position: absolute;
-  width: 1236.657px;
-  height: 1558.226px;
+  width: 1066.803px;
+  height: 698.404px;
   flex-shrink: 0;
-  border-radius: 1558.226px;
-  background: #7539ca;
-  filter: blur(232.74249267578125px);
-  top: 65px;
-  right: 282px;
+  border-radius: 1066.803px;
+  background: #1b1717;
+  filter: blur(216.57391357421875px);
+  /* top: 65px;
+  right: 282px; */
+`;
+
+const CommonFasadeImg = styled.img`
+  position: absolute;
+  width: 80%;
+  top: 0;
+`;
+
+const ScrollImg = styled.img`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30%;
+  z-index: 0;
 `;
 const Ellipse_2 = styled.div`
   position: absolute;
-  width: 1601.53px;
-  height: 2020.945px;
+  width: 823.756px;
+  height: 538.496px;
   flex-shrink: 0;
-  border-radius: 2020.945px;
-  background: #1b1717;
-  filter: blur(216.57391357421875px);
-  top: -530px;
-  right: 408px;
+  border-radius: 823.756px;
+  background: #7539ca;
+  filter: blur(232.74249267578125px);
+  top: -157px;
+  /* right: 408px; */
+  opacity: 0.4;
 `;
 const SVGBuildDAO = styled.div`
   position: absolute;
@@ -188,6 +214,18 @@ const CtaText = styled.div`
     margin: 0;
   }
 
+  .button-container {
+    button {
+      border: 1px solid #eca227;
+      &:disabled {
+        opacity: 1;
+      }
+      &:hover:not(:disabled) {
+        border: 1px solid #fff;
+      }
+    }
+  }
+
   img {
     width: 150px;
     opacity: 0;
@@ -237,19 +275,28 @@ const MobileText = styled.div`
   }
 `;
 
+const [email, setEmail] = useState("");
+const [isValid, setIsValid] = useState(false);
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const handleChange = (e) => {
+  const newEmail = e.target.value;
+  setEmail(newEmail);
+  setIsValid(emailRegex.test(newEmail));
+};
+
+const handleSubmit = () => {
+  Storage.set("emailSubmitted", email);
+};
+
 return (
   <MainContainer>
     <NoiseBG src={noise} />
     <Container>
       <Ellipse_1 />
       <Ellipse_2 />
-      <SVGBuildDAO>
-        <BuildDAOSVG />
-      </SVGBuildDAO>
-      <BuildDAOBottom>
-        <BuildDAOSVGBottom />
-      </BuildDAOBottom>
-      <BGImage src={CTABG} />
+      <CommonFasadeImg src={CommonFacade} />
+      <ScrollImg src={Scroll} />
       <Content>
         <Heading>
           <h2>
@@ -257,38 +304,52 @@ return (
           </h2>
         </Heading>
         <CTADiv className="d-flex">
-          <CtaText className="d-flex align-items-end gap-2 flex-grow-1">
-            <p>
-              Everyone is welcome to BuildCommons, whether contributing to the
-              global commons, or receiving support to contribute locally, it all
-              begins simply by signalling your interest:
-            </p>
+          <CtaText className="d-flex align-items-center gap-2 flex-grow-1">
+            <div className="d-flex flex-column ">
+              <p>
+                Everyone is welcome to BuildCommons, whether contributing to the
+                global commons, or receiving support to contribute locally, it
+                all begins simply by signalling your interest:
+              </p>
+            </div>
             <div className="form-group d-flex gap-3 flex-grow-1">
               <input
                 className="form-control z-1"
                 data-bs-theme="dark"
                 placeholder="email@email.com"
                 type="email"
+                value={email}
+                onChange={handleChange}
               />
               <div className="button-container position-relative">
                 <Button
                   className="flex-shrink-0 position-relative z-3 ms-5"
                   variant="primary"
+                  disabled={!isValid}
                   style={{ width: "max-content" }}
+                  onClick={handleSubmit}
                 >
                   Confirm
                 </Button>
-                <HammerSVG
+                {/* <HammerSVG
                   className={`position-absolute start-50 top-50 translate-middle`}
+                  style={{ pointerEvents: "none" }}
                 />
                 <img
                   className={`z-2 position-absolute start-50 top-50 translate-middle`}
                   src={YellowGlow}
-                />
+                /> */}
               </div>
             </div>
+            <Button onClick={() => Storage.set("emailSubmitted", "")}>
+              Clear Email
+            </Button>
           </CtaText>
         </CTADiv>
+        <p>
+          If your address matches with any of our list of relative ecosystem
+          members, you are granted an honorary commons membership
+        </p>
         <MobileText>
           <p>We hope you join us to build better futures for everyone!</p>
         </MobileText>

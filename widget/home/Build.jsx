@@ -2,6 +2,9 @@ const { Button } = VM.require("buildhub.near/widget/components") || {
   Button: () => <></>,
 };
 
+const CardBG =
+  "https://ipfs.near.social/ipfs/bafybeicd7gndxlgcy44sze5huw2hkww6brzpjjw4wqhececls2lmi4vp4q";
+
 const bosImage =
   "https://ipfs.near.social/ipfs/bafkreidpkotlkxxh4kz2jnzxxjs4i4boqv3dunrdfwvf53rkg7dlqdki5y";
 
@@ -52,13 +55,79 @@ const GettingStartedSVG = () => {
   );
 };
 
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0px 72px;
+  h2 {
+    color: var(--FFFFFF, #fff);
+    font-family: Poppins;
+    font-size: 58px;
+    font-weight: 500;
+    line-height: 120%; /* 86.4px */
+    letter-spacing: -2.88px;
+    margin: 0;
+
+    span {
+      background: linear-gradient(87deg, #eca227 39.02%, #fc8119 108.97%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: Poppins;
+      font-size: 58px;
+      font-weight: 500;
+      line-height: 120%;
+      letter-spacing: -2.88px;
+      margin: 0;
+    }
+  }
+
+  p {
+    max-width: 421px;
+    color: var(--Color-Neutral-neutral, #666);
+    font-family: Poppins;
+    font-size: 18px;
+    margin: 0;
+  }
+`;
+
 const Container = styled.div`
   width: 100%;
-  padding: 48px 72px;
+  padding-bottom: 48px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   align-items: center;
   gap: 1rem;
+  h2 {
+    color: var(--FFFFFF, #fff);
+    font-family: Poppins;
+    font-size: 58px;
+    font-weight: 500;
+    line-height: 120%; /* 86.4px */
+    letter-spacing: -2.88px;
+    margin: 0;
+
+    span {
+      background: linear-gradient(87deg, #eca227 39.02%, #fc8119 108.97%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: Poppins;
+      font-size: 58px;
+      font-weight: 500;
+      line-height: 120%;
+      letter-spacing: -2.88px;
+      margin: 0;
+    }
+  }
+
+  p {
+    max-width: 421px;
+    color: var(--Color-Neutral-neutral, #666);
+    font-family: Poppins;
+    font-size: 18px;
+    margin: 0;
+  }
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr; /* Stack in a single column */
   }
@@ -70,6 +139,7 @@ const Container = styled.div`
 `;
 
 const BuildContainer = styled.div`
+  grid-column: span 4 / span 4;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -132,11 +202,33 @@ const BuildContainer = styled.div`
   }
 `;
 
+const CardsBG = styled.img`
+  position: absolute;
+  opacity: 0.2;
+  z-index: 0;
+  width: 100%;
+  transform: scale(1.5);
+  top: -50%;
+`;
+
 const Cards = styled.div`
+  position: relative;
+  grid-column: span 8 / span 8;
+  flex-shrink: 0;
   display: grid;
+  padding: 20px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.41) 0%,
+      rgba(0, 0, 0, 0.41) 100%
+    ),
+    rgba(47, 108, 101, 0.44);
   gap: 34px;
   z-index: 2;
+  border-radius: 61px;
+  border: 5px solid #77776f;
+  overflow: clip;
 
   @media screen and (max-width: 500px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -145,12 +237,13 @@ const Cards = styled.div`
 `;
 
 const BosContainer = styled.div`
-  border-radius: 24px;
   grid-column: span 2 / span 2;
-  background: var(--1E1E1E, #1e1e1e);
   display: flex;
   justify-content: space-between;
 
+  border-radius: 24px;
+  border: 1px solid #849a73;
+  background: rgba(30, 30, 30, 0.24);
   @media screen and (max-width: 500px) {
     overflow: hidden;
     display: inline-block;
@@ -163,6 +256,7 @@ const Text = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  z-index: 2;
   h4 {
     color: var(--FFFFFF, #fff);
     font-family: Poppins;
@@ -215,9 +309,11 @@ const BosVector = styled.img`
 `;
 
 const GettingStarted = styled.div`
+  z-index: 2;
   padding: 32px;
   border-radius: 24px;
-  background: linear-gradient(180deg, #4a3535 0%, #6a4b4b 61%, #b07d7d 100%);
+  border: 1px solid #f7dede;
+  background: rgba(119, 139, 105, 0.35);
 
   display: flex;
   flex-direction: column;
@@ -245,9 +341,10 @@ const GettingStarted = styled.div`
 `;
 const LearnMore = styled.div`
   padding: 32px;
+  z-index: 2;
   border-radius: 24px;
   border: 1px solid var(--4D4D4D, #4d4d4d);
-  background: #000;
+  background: rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -273,58 +370,35 @@ const LearnMore = styled.div`
 
 const Build = () => {
   return (
-    <Container>
-      <BuildContainer>
-        <h2>
-          Build in <span>one space</span>
-        </h2>
-        <p>
-          We provide support systems for open-source contributors to help each
-          other, learn together, and solve real problems.
-          <br />
-          <br />
-          To support this, we invite you to create containers for shared goals,
-          <br />
-          <br />
-          and to cultivate those with sahred tools, visions, resources, goals,
-          missions, and initiatives
-        </p>
-      </BuildContainer>
-      <Cards>
-        <BosContainer>
-          <Text>
-            <h4>local commons</h4>
-            <p>For local development of public goods.</p>
-          </Text>
-          <BosVector src={bosImage} />
-        </BosContainer>
-        {/* <DesktopContainer> */}
-        <GettingStarted>
-          <p>Getting Started</p>
-          <Button
-            style={{
-              gap: "8px",
-              borderRadius: "10px",
-            }}
-          >
-            <GettingStartedSVG />
-            Open Contracts
-          </Button>
-        </GettingStarted>
-        <LearnMore>
-          <p>Learn More</p>
-          <Button
-            style={{
-              gap: "8px",
-              borderRadius: "10px",
-            }}
-          >
-            <WorkspaceDocsSVG />
-            View Graphs
-          </Button>
-        </LearnMore>
-        {/* </DesktopContainer> */}
-        {/* <MobileContainer>
+    <MainContainer>
+      <h2>
+        Build in <span>one space</span>
+      </h2>
+      <Container>
+        <BuildContainer>
+          <p>
+            We provide support systems for open-source contributors to help each
+            other, learn together, and solve real problems.
+            <br />
+            <br />
+            To support this, we invite you to create containers for shared
+            goals,
+            <br />
+            <br />
+            and to cultivate those with sahred tools, visions, resources, goals,
+            missions, and initiatives
+          </p>
+        </BuildContainer>
+        <Cards>
+          <CardsBG src={CardBG} />
+          <BosContainer>
+            <Text>
+              <h4>local commons</h4>
+              <p>For local development of public goods.</p>
+            </Text>
+            {/* <BosVector src={bosImage} /> */}
+          </BosContainer>
+          {/* <DesktopContainer> */}
           <GettingStarted>
             <p>Getting Started</p>
             <Button
@@ -334,7 +408,7 @@ const Build = () => {
               }}
             >
               <GettingStartedSVG />
-              Quickstart Guide
+              Open Contracts
             </Button>
           </GettingStarted>
           <LearnMore>
@@ -346,12 +420,39 @@ const Build = () => {
               }}
             >
               <WorkspaceDocsSVG />
-              Workspace Docs
+              View Graphs
             </Button>
           </LearnMore>
-        </MobileContainer> */}
-      </Cards>
-    </Container>
+          {/* </DesktopContainer> */}
+          {/* <MobileContainer>
+          <GettingStarted>
+          <p>Getting Started</p>
+          <Button
+          style={{
+            gap: "8px",
+            borderRadius: "10px",
+          }}
+          >
+          <GettingStartedSVG />
+          Quickstart Guide
+          </Button>
+          </GettingStarted>
+          <LearnMore>
+          <p>Learn More</p>
+          <Button
+              style={{
+                gap: "8px",
+                borderRadius: "10px",
+              }}
+              >
+              <WorkspaceDocsSVG />
+              Workspace Docs
+              </Button>
+              </LearnMore>
+            </MobileContainer> */}
+        </Cards>
+      </Container>
+    </MainContainer>
   );
 };
 return { Build };

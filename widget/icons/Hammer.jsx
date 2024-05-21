@@ -1,4 +1,4 @@
-const Hammer = ({ className }) => {
+const Hammer = ({ className, style }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -7,6 +7,7 @@ const Hammer = ({ className }) => {
       viewBox="0 0 349 322"
       fill="none"
       className={className}
+      style={style}
     >
       <g opacity="0.9" filter="url(#filter0_d_1_8583)">
         <path d="M156.714 50H144.857V62.3326H156.714V50Z" fill="#2D2F4A" />
