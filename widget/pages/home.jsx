@@ -241,6 +241,13 @@ const ComingSoonBanner = styled.div`
     line-height: 156%; /* 93.6px */
     margin-top: -50px;
   }
+
+  @media screen and (max-width: 768px) {
+    h3 {
+    }
+    top: 32px;
+    left: 20px;
+  }
 `;
 
 const Scroll = styled.div`
