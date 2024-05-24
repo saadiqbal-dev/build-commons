@@ -126,14 +126,16 @@ const Heading = styled.h1`
 
 const Subheading = styled.h2`
   z-index: 2;
-  color: var(--A0A0A0, #a0a0a0);
+  color: #a0a0a0;
   font-family: Poppins;
   font-size: 33px;
   font-style: normal;
   font-weight: 400;
   line-height: 140%; /* 46.2px */
   margin: 0;
-
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+  }
   @media screen and (max-width: 500px) {
     font-size: 14px;
   }

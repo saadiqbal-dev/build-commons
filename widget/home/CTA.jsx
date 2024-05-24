@@ -33,6 +33,8 @@ const MainContainer = styled.div`
   margin: 72px 48px;
   z-index: 2;
   overflow: clip;
+  @media screen and (max-width: 768px) {
+  }
   @media screen and (max-width: 500px) {
     padding: 2rem 48px;
   }
@@ -46,6 +48,12 @@ const Container = styled.div`
   overflow: clip;
 `;
 const Content = styled.div`
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
   position: relative;
   z-index: 1;
   overflow: clip;
@@ -167,7 +175,7 @@ const Heading = styled.div`
     }
   }
   @media screen and (max-width: 768px) {
-    max-width: 327px;
+    /* max-width: 327px; */
     h2 {
       font-size: 48px;
       span {
@@ -176,7 +184,7 @@ const Heading = styled.div`
     }
   }
   @media screen and (max-width: 500px) {
-    max-width: 327px;
+    /* max-width: 327px; */
     h2 {
       font-size: 24px;
       letter-spacing: -1px;
@@ -192,7 +200,7 @@ const CTADiv = styled.div`
   position: relative;
   padding-bottom: 24px;
   @media screen and (max-width: 768px) {
-    max-width: 327px;
+    /* max-width: 327px; */
   }
   @media screen and (max-width: 500px) {
     display: flex;
@@ -201,6 +209,13 @@ const CTADiv = styled.div`
   }
 `;
 const CtaText = styled.div`
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    p {
+      text-align: center;
+      max-width: none;
+    }
+  }
   p {
     max-width: 452px;
     color: var(--E8E8E8, #e8e8e8);
@@ -209,7 +224,7 @@ const CtaText = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 140%;
-    text-align: right;
+    /* text-align: right; */
     padding-top: 1rem;
     margin: 0;
   }
@@ -238,7 +253,7 @@ const CtaText = styled.div`
     }
   }
   @media screen and (max-width: 768px) {
-    width: 190px;
+    /* width: 190px; */
     bottom: 31px;
     right: 5px;
     p {
@@ -289,6 +304,20 @@ const handleSubmit = () => {
   Storage.set("emailSubmitted", email);
 };
 
+const InputContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  Button {
+    width: max-content;
+    flex-shrink: 0;
+  }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+`;
+
 return (
   <MainContainer>
     <NoiseBG src={noise} />
@@ -312,7 +341,7 @@ return (
                 all begins simply by signalling your interest:
               </p>
             </div>
-            <div className="form-group d-flex gap-3 flex-grow-1">
+            <InputContainer className="form-group ">
               <input
                 className="form-control z-1"
                 data-bs-theme="dark"
@@ -323,27 +352,23 @@ return (
               />
               <div className="button-container position-relative">
                 <Button
-                  className="flex-shrink-0 position-relative z-3 ms-5"
+                  className="flex-shrink-0 position-relative z-3"
                   variant="primary"
                   disabled={!isValid}
                   style={{ width: "max-content" }}
                   onClick={handleSubmit}
+                  onTouch={handleSubmit}
                 >
                   Confirm
                 </Button>
-                {/* <HammerSVG
-                  className={`position-absolute start-50 top-50 translate-middle`}
-                  style={{ pointerEvents: "none" }}
-                />
-                <img
-                  className={`z-2 position-absolute start-50 top-50 translate-middle`}
-                  src={YellowGlow}
-                /> */}
               </div>
-            </div>
-            <Button onClick={() => Storage.set("emailSubmitted", "")}>
-              Clear Email
-            </Button>
+              <Button
+                style={{ flexShrink: "0" }}
+                onClick={() => Storage.set("emailSubmitted", "")}
+              >
+                Clear Email
+              </Button>
+            </InputContainer>
           </CtaText>
         </CTADiv>
         <p>

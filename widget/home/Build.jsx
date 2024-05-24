@@ -89,6 +89,16 @@ const MainContainer = styled.div`
     font-size: 18px;
     margin: 0;
   }
+
+  @media screen and (max-width: 768px) {
+    h2 {
+      align-self: center;
+      font-size: 48px;
+      span {
+        font-size: 48px;
+      }
+    }
+  }
 `;
 
 const Container = styled.div`
@@ -129,11 +139,14 @@ const Container = styled.div`
     margin: 0;
   }
   @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr; /* Stack in a single column */
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    ); /* Stack in a single column */
   }
   @media screen and (max-width: 1024px) {
     grid-template-columns: 1fr; /* Stack in a single column */
-    padding: 48px;
+    padding-top: 48px;
     align-items: center;
   }
 `;
@@ -182,6 +195,7 @@ const BuildContainer = styled.div`
   }
   @media screen and (max-width: 768px) {
     align-items: center;
+    grid-column: span 1 / span 1;
     h2 {
       font-size: 52px;
       span {
@@ -190,6 +204,7 @@ const BuildContainer = styled.div`
     }
     p {
       font-size: 16px;
+      max-width: none;
     }
   }
   @media screen and (max-width: 500px) {
@@ -229,6 +244,10 @@ const Cards = styled.div`
   border-radius: 61px;
   border: 5px solid #77776f;
   overflow: clip;
+
+  @media screen and (max-width: 768px) {
+    grid-column: span 1 / span 1;
+  }
 
   @media screen and (max-width: 500px) {
     grid-template-columns: repeat(2, minmax(0, 1fr));

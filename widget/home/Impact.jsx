@@ -32,6 +32,15 @@ const MainContainer = styled.div`
       letter-spacing: -2.88px;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    h3 {
+      font-size: 48px;
+      span {
+        font-size: 48px;
+      }
+    }
+  }
 `;
 const Container = styled.div`
   position: relative;
@@ -63,6 +72,16 @@ const Content = styled.div`
     line-height: 72px; /* 156.522% */
     letter-spacing: -0.92px;
   }
+
+  @media screen and (max-width: 768px) {
+    p {
+      font-size: 20px;
+      line-height: 30px;
+    }
+    button {
+      display: block;
+    }
+  }
 `;
 const ContainerButton = styled.div`
   position: absolute;
@@ -82,10 +101,8 @@ const Impact = () => {
             Cooperative efforts can address global challenges and contribute to
             widespread positive change.
           </p>
-        </Content>
-        <ContainerButton>
           <Button>Start Now</Button>
-        </ContainerButton>
+        </Content>
       </Container>
     </MainContainer>
   );

@@ -31,6 +31,18 @@ const Matric = styled.div`
     color: rgba(255, 255, 255, 1);
     margin: 0;
   }
+
+  @media screen and (max-width: 768px) {
+    gap: 0;
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+    h2 {
+      font-size: 32px;
+    }
+    p {
+      font-size: 56px;
+    }
+  }
 `;
 const Content = styled.div`
   display: flex;
@@ -58,8 +70,24 @@ const Content = styled.div`
     font-weight: 400;
     line-height: 58.8px;
     text-align: left;
+    margin: 0;
+    color: rgba(160, 160, 160, 1);
+  }
 
-    color: var(--A0A0A0, rgba(160, 160, 160, 1));
+  @media screen and (max-width: 768px) {
+    margin: 0;
+    h3 {
+      font-size: 48px;
+      align-self: center;
+
+      span {
+        font-size: 48px;
+      }
+    }
+    p {
+      line-height: 36px;
+      font-size: 28px;
+    }
   }
 `;
 const Exosystem = () => {

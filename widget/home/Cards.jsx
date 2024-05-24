@@ -34,6 +34,15 @@ const MainContainer = styled.div`
       letter-spacing: -2.88px;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    h3 {
+      font-size: 48px;
+      span {
+        font-size: 48px;
+      }
+    }
+  }
 `;
 
 const Container = styled.div`
@@ -43,7 +52,7 @@ const Container = styled.div`
   margin: 0 3rem;
 
   @media screen and (max-width: 768px) {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    /* grid-template-columns: repeat(1, minmax(0, 1fr)); */
   }
 `;
 
@@ -85,6 +94,14 @@ const LeftCard = styled.div`
   @media screen and (max-width: 1025px) {
     h3 {
       font-size: 38px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    h3 {
+      font-size: 24px;
+    }
+    p {
+      font-size: 16px;
     }
   }
   @media screen and (max-width: 500px) {
@@ -136,6 +153,14 @@ const RightCard = styled.div`
   @media screen and (max-width: 1025px) {
     h3 {
       font-size: 38px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    h3 {
+      font-size: 24px;
+    }
+    p {
+      font-size: 16px;
     }
   }
   @media screen and (max-width: 500px) {
