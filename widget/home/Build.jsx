@@ -1,7 +1,7 @@
 const { Button } = VM.require("buildhub.near/widget/components") || {
   Button: () => <></>,
 };
-
+const theme = []
 const CardBG =
   "https://ipfs.near.social/ipfs/bafybeicd7gndxlgcy44sze5huw2hkww6brzpjjw4wqhececls2lmi4vp4q";
 
